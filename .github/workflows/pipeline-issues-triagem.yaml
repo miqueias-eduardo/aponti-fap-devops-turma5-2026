@@ -14,9 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Criar label triagem
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Criar ou atualizar a label triagem
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
         run: |
           gh label create "triagem" \
             --color "FBCA04" \
